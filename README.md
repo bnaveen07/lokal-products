@@ -24,13 +24,13 @@
   <h3>Installation</h3>
   <ol>
     <li><strong>Clone the Repository:</strong>
-      <pre><code>git clone https://github.com/yourusername/product-showcase-app.git</code></pre>
+      <pre><code>git clone https://github.com/bnaveen07/lokal-products.git</code></pre>
     </li>
     <li><strong>Open in Android Studio:</strong>
       <ul>
         <li>Launch Android Studio.</li>
         <li>Select "Open an existing Android Studio project."</li>
-        <li>Navigate to the <code>product-showcase-app</code> folder in the cloned repository and open it.</li>
+        <li>Navigate to the <code>lokal-products</code> folder in the cloned repository and open it.</li>
       </ul>
     </li>
     <li><strong>Sync and Build:</strong>
