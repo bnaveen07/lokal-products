@@ -92,10 +92,17 @@
     </RadioGroup>
 
     <!-- Apply Button -->
-    <Button
+<!--    <Button-->
+
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Apply Filter"/>-->
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnApply"
+android:text="Apply Filter"
+        android:textColor="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Apply Filter"/>
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

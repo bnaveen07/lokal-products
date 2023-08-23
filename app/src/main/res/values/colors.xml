@@ -3,4 +3,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="olive">#808000</color>
+    <color name="color1">#FAF1E4</color>
+    <color name="green">#00FF00</color>
+    <color name="color2">#CEDEBD</color>
+    <color name="color3">#9EB384</color>
+    <color name="color4">#435334</color>
+    <color name="colorGreen">#00FF00</color>
+    <color name="colorRed">#FF0000</color>
+
 </resources>

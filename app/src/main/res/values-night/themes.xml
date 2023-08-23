@@ -3,5 +3,18 @@
     <style name="Base.Theme.LokalTask" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/color3</item>
+        <item name="colorPrimaryDark">@color/color4</item>
+        <item name="colorAccent">@color/color2</item>
+        <item name="colorOnPrimary">@color/color1</item>
     </style>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+
+        <item name="colorPrimary">@color/color3</item>
+        <item name="colorPrimaryDark">@color/color4</item>
+        <item name="colorAccent">@color/color2</item>
+        <item name="colorOnPrimary">@color/color1</item>
+    </style>
+
 </resources>

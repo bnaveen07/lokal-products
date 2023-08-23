@@ -48,13 +48,16 @@ class MainActivity : AppCompatActivity(), ProductAdapter.OnProductClickListener,
         toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
+//        toolbar.setLogo(R.drawable.logo)
+        toolbar.title = "Lokal Products"
+
         recyclerView = findViewById(R.id.products_recycler_view)
         progressBar = findViewById(R.id.progressBar)
         swipeRefreshLayout = findViewById(R.id.swipeRefresh)
+//        FloatingActionButton = findViewById(R.id.fadAdd)
 
         recyclerView.isVerticalScrollBarEnabled = false
         recyclerView.isHorizontalScrollBarEnabled = false
-        progressBar.visibility = View.VISIBLE // Show ProgressBar
 
 //        val dynamicColor = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
 //        val colorScheme = when {
@@ -75,6 +78,7 @@ class MainActivity : AppCompatActivity(), ProductAdapter.OnProductClickListener,
 //        categoryList.add("All Categories")
 
         swipeRefreshLayout.setOnRefreshListener {
+
             // Call the method that updates your data here
             fetchProducts()
 
@@ -89,8 +93,12 @@ class MainActivity : AppCompatActivity(), ProductAdapter.OnProductClickListener,
     }
 
     private fun fetchProducts() {
+        progressBar.visibility = View.VISIBLE // Show ProgressBar
         RetrofitInstance.productService.getProducts().enqueue(object : Callback<ProductResponse> {
+
             override fun onResponse(call: Call<ProductResponse>, response: Response<ProductResponse>) {
+                swipeRefreshLayout.isRefreshing = false  // Stop the refresh spinner
+
                 if (response.isSuccessful) {
                     progressBar.visibility = View.GONE // Disable ProgressBar
 
@@ -101,9 +109,6 @@ class MainActivity : AppCompatActivity(), ProductAdapter.OnProductClickListener,
                         val adapter = ProductAdapter(productsList, this@MainActivity, this@MainActivity)
                         recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
                         recyclerView.adapter = adapter
-
-
-                        
                         for(i in products){
                             brandList.add(i.brand)
                             categoryList.add(i.category)
@@ -120,6 +125,8 @@ class MainActivity : AppCompatActivity(), ProductAdapter.OnProductClickListener,
             }
 
             override fun onFailure(call: Call<ProductResponse>, t: Throwable) {
+                swipeRefreshLayout.isRefreshing = false  // Stop the refresh spinner
+
                 progressBar.visibility = View.GONE // Disable ProgressBar
                 Toast.makeText(this@MainActivity, "Products not fetched!", Toast.LENGTH_SHORT).show()
                 // Handle other types of errors, like network failures
@@ -127,6 +134,7 @@ class MainActivity : AppCompatActivity(), ProductAdapter.OnProductClickListener,
             }
         })
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
@@ -195,7 +203,7 @@ class MainActivity : AppCompatActivity(), ProductAdapter.OnProductClickListener,
         Log.d(TAG, "filterProducts: Brand: $brand, Category: $category, PriceSort: $priceSort, DiscountSort: $discountSort")
 
         var filteredProducts = originalProductsList.filter {
-            (brand == "Select Brand" || it.brand == brand) || (category == "Select Category" || it.category == category)
+            (brand == "Select Brand" || it.brand == brand) && (category == "Select Category" || it.category == category)
         }
 
         when (priceSort) {

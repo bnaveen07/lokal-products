@@ -6,7 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.lokaltask.ApiResponse.Products
@@ -20,7 +23,11 @@ class ProductAdapter(
     inner class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView: TextView = itemView.findViewById(R.id.titleTextView)
         val productImageView : ImageView = itemView.findViewById(R.id.product_image)
-        val descriptionTextView : TextView = itemView.findViewById(R.id.descriptionTextView)
+        val categoryTextView : TextView = itemView.findViewById(R.id.categoryTextView)
+        val discountTextView : TextView = itemView.findViewById(R.id.discountTextView)
+        val priceTextView : TextView = itemView.findViewById(R.id.priceTextView)
+//        val ratingBar : RatingBar = itemView.findViewById(R.id.ratingBar)
+//        val stockAvailabilityTextView : TextView = itemView.findViewById(R.id.stockAvailabilityTextView)
         // Add other views you want to bind data to
     }
 
@@ -37,8 +44,16 @@ class ProductAdapter(
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val product = products[position]
         holder.titleTextView.text = product.title
-        holder.descriptionTextView.text = product.description
-        holder.descriptionTextView.text = product.description
+        holder.categoryTextView.text = product.category
+//        holder.descriptionTextView.text = product.description
+//        holder.ratingBar.rating = product.rating.toFloat()
+        holder.priceTextView.text = "Price : " + product.price.toString()
+        holder.discountTextView.text= "(" + product.discountPercentage.toString() + "% off)"
+
+
+
+
+
 //        Picasso.get().load(product.thumbnail).into(holder.productImageView)
 
         Glide.with(holder.productImageView.context)

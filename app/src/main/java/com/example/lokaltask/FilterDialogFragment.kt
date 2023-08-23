@@ -17,6 +17,7 @@ import android.widget.RadioGroup
 import android.widget.Spinner
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
+import com.google.android.material.button.MaterialButton
 
 class FilterDialogFragment : DialogFragment() {
     private var brandList: MutableList<String> = mutableListOf()
@@ -42,7 +43,7 @@ class FilterDialogFragment : DialogFragment() {
         val categorySpinner: Spinner = view.findViewById(R.id.spinnerCategory)
         val radioGroupPriceSort: RadioGroup = view.findViewById(R.id.radioGroupPriceSort)
         val radioGroupDiscountSort: RadioGroup = view.findViewById(R.id.radioGroupDiscountSort)
-        val btnApply: Button = view.findViewById(R.id.btnApply)
+        val btnApply: MaterialButton = view.findViewById(R.id.btnApply)
         brandList.add("Select Brand")
         categoryList.add("Select Category")
 

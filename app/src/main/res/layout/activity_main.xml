@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
+    android:theme="@style/Base.Theme.LokalTask"
     android:background="@color/white"
     tools:ignore="HardcodedText">
 
@@ -57,10 +58,10 @@
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fadAdd"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_margin="50dp"
         android:layout_gravity="top"
-        android:backgroundTint="@color/black"
+        android:backgroundTint="@color/color4"
         android:text="Filter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
