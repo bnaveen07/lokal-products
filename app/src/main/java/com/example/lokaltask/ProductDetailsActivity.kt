@@ -1,6 +1,7 @@
 package com.example.lokaltask;
 
 import android.annotation.SuppressLint
+import android.graphics.Paint
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -21,6 +22,13 @@ class ProductDetailsActivity : AppCompatActivity() {
     private val handler = Handler()
     private var imagePosition = 0
     private lateinit var toolbar: androidx.appcompat.widget.Toolbar
+    private lateinit var titleTextView: TextView
+    private lateinit var ratingBar: RatingBar
+    private lateinit var descriptionTextView: TextView
+    private lateinit var priceTextView: TextView
+    private lateinit var mrpTextView: TextView
+    private lateinit var discountTextView : TextView
+
 
     @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,16 +52,22 @@ class ProductDetailsActivity : AppCompatActivity() {
             imageList = product!!.images
 
 //        val productImage = findViewById<ImageView>(R.id.product_image)
-            val titleTextView = findViewById<TextView>(R.id.titleTextView)
-            val ratingBar = findViewById<RatingBar>(R.id.ratingBar)
-            val descriptionTextView = findViewById<TextView>(R.id.descriptionTextView)
-            val priceTextView = findViewById<TextView>(R.id.priceTextView)
-            val discountTextView = findViewById<TextView>(R.id.discountTextView)
+            titleTextView = findViewById<TextView>(R.id.titleTextView)
+            ratingBar = findViewById<RatingBar>(R.id.ratingBar)
+            descriptionTextView = findViewById<TextView>(R.id.descriptionTextView)
+            priceTextView = findViewById<TextView>(R.id.priceTextView)
+            mrpTextView = findViewById<TextView>(R.id.mrpTextView)
+            discountTextView = findViewById<TextView>(R.id.discountTextView)
+            val mrp = product.price / (1 - product.discountPercentage / 100.0)
+            mrpTextView.text = "$" + String.format("%.2f", mrp)
+
+// Apply strikethrough to MRP text
+            mrpTextView.paintFlags = mrpTextView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
             titleTextView.text = product.title
             descriptionTextView.text = product.description
             ratingBar.rating = product.rating.toFloat()
 
-            priceTextView.text = product.price.toString()
+            priceTextView.text =  " $" + product.price.toString()
             discountTextView.text = "(" +product.discountPercentage.toString()  + "%  off)"
 //            discountTextView.setTextColor(R.color.colorGreen)
 //            discountTextView.apply {

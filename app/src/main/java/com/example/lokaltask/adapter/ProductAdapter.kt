@@ -1,6 +1,7 @@
 package com.example.lokaltask.adapter
 
 import android.content.Context
+import android.graphics.Paint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -26,6 +27,7 @@ class ProductAdapter(
         val categoryTextView : TextView = itemView.findViewById(R.id.categoryTextView)
         val discountTextView : TextView = itemView.findViewById(R.id.discountTextView)
         val priceTextView : TextView = itemView.findViewById(R.id.priceTextView)
+        val mrpTextView : TextView = itemView.findViewById(R.id.mrpTextView)
 //        val ratingBar : RatingBar = itemView.findViewById(R.id.ratingBar)
 //        val stockAvailabilityTextView : TextView = itemView.findViewById(R.id.stockAvailabilityTextView)
         // Add other views you want to bind data to
@@ -47,8 +49,18 @@ class ProductAdapter(
         holder.categoryTextView.text = product.category
 //        holder.descriptionTextView.text = product.description
 //        holder.ratingBar.rating = product.rating.toFloat()
-        holder.priceTextView.text = "Price : " + product.price.toString()
+        holder.priceTextView.text = " $" + product.price.toString()
         holder.discountTextView.text= "(" + product.discountPercentage.toString() + "% off)"
+//        holder.priceTextView.text = "Price : $" + product.price.toString()
+
+        val discountPercentage = product.discountPercentage
+        holder.discountTextView.text = "($discountPercentage% off)"
+
+        val mrp = product.price / (1 - discountPercentage / 100.0)
+        holder.mrpTextView.text = "$" + String.format("%.2f", mrp)
+
+// Apply strikethrough to MRP text
+        holder.mrpTextView.paintFlags = holder.mrpTextView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 
 
 
